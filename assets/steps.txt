@@ -1,0 +1,17 @@
+1.bmof.bin  via kernel module wmi_bmof
+sudo cat /sys/devices/platform/PNP0C14:01/wmi_bus/wmi_bus-PNP0C14:01/05901221-D566-11D1-B2F0-00A0C9062910/bmof > bmof.bin
+
+2.bmof.mof via bmof.bin and https://github.com/pali/bmfdec
+cat bmof.bin | ./bmf2mof > bmof.mof
+
+3. acpimof.dll from Mechrevo Windows Driver for OSD
+4. acpimof.bin from acpimof.dll's Resources via CFF Explorer
+5. acpimof.mof via acpimof.bin and https://github.com/pali/bmfdec
+cat acpimof.bin | ./bmf2mof > acpimof.mof
+
+6. DSDT.dat
+cat /sys/firmware/acpi/tables/DSDT > dsdt.dat
+7. dsdt.dsl
+iasl -d dsdt.dat
+8. WDG from dsdt.dal
+9. WDG.txt via wmidump
